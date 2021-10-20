@@ -31,31 +31,4 @@ class HomeController extends Controller
             "allBuku" => Buku::all()
         ]);
     }
-
-    public function showBuku() {
-        if(Auth::guard('petugas')->check()) {
-            return view('petugas.buku', [
-                "title" => "Buku",
-                "allBuku" => Buku::all()
-            ]);
-        }
-        return view('anggota.buku', [
-            "title" => "Buku",
-            "allBuku" => Buku::all()
-        ]);
-    }
-
-    public function showKategori() {
-        return view('petugas.kategori',[
-            "title" => "Kategori",
-            "allKategori" => Kategori::all()
-        ]);
-    }
-
-    public function showDataAnggota() {
-        return view('petugas.data_anggota', [
-            'title' => "Data Anggota",
-            "allAnggota" => Anggota::all()
-        ]);
-    }
 }

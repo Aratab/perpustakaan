@@ -41,6 +41,6 @@ class AnggotaLoginController extends Controller
     public function logout()
     {
         Auth::guard('anggota')->logout();
-        return redirect('/');
+        return redirect(route('anggota.login'));
     }
 }
