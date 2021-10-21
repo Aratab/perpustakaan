@@ -36,5 +36,6 @@ Route::prefix('petugas')->group(function() {
     Route::get('/buku','Auth\PetugasController@showBuku')->name('petugas.buku');
     Route::get('/kategori','Auth\PetugasController@showKategori')->name('petugas.kategori');
     Route::get('/data_anggota','Auth\PetugasController@showDataAnggota')->name('petugas.dataanggota');
+    Route::get('/peminjaman', 'Auth\PetugasController@showPeminjaman')->name('petugas.peminjaman');
 });
  
