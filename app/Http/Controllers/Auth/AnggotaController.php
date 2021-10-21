@@ -29,5 +29,5 @@ class AnggotaController extends Controller
             "title" => "Buku",
             "allBuku" => Buku::all()
         ]);
-    } 
+    }
 }

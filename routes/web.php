@@ -24,7 +24,7 @@ Route::prefix('anggota')->group(function() {
     Route::get('logout/', 'Auth\AnggotaLoginController@logout')->name('anggota.logout');
     Route::get('/', 'Auth\AnggotaController@index')->name('anggota.dashboard');
 
-    Route::get('/buku', 'Auth\AnggotaController@showBuku')->name('anggota.buku'); 
+    Route::get('/buku', 'Auth\AnggotaController@showBuku')->name('anggota.buku');
 });
 
 Route::prefix('petugas')->group(function() {
