@@ -18,6 +18,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Auth::routes();
 
+
+
 Route::prefix('anggota')->group(function() {
     Route::get('/login','Auth\AnggotaLoginController@showLoginForm')->name('anggota.login');
     Route::post('/login', 'Auth\AnggotaLoginController@login')->name('anggota.login');
@@ -38,3 +40,9 @@ Route::prefix('petugas')->group(function() {
     Route::get('/data_anggota','Auth\PetugasController@showDataAnggota')->name('petugas.dataanggota');
 });
  
+Auth::routes();
+
+// Route untuk melihat detail buku berdasarkan judul
+Route::get('/viewbook/{judul}', [App\Http\Controllers\HomeController::class, 'viewbook'])->name('viewbook');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

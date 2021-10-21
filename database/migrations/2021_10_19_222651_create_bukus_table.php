@@ -18,7 +18,7 @@ class CreateBukusTable extends Migration
             $table->string('isbn',20)->unique();
             $table->string('judul');
             $table->unsignedBigInteger('idkategori');
-            $table->string('pangarang');
+            $table->string('pengarang');
             $table->string('penerbit');
             $table->string('kota_terbit');
             $table->string('editor',50);
