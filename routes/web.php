@@ -38,4 +38,6 @@ Route::prefix('petugas')->group(function() {
     Route::get('/data_anggota','Auth\PetugasController@showDataAnggota')->name('petugas.dataanggota');
     Route::get('/peminjaman', 'Auth\PetugasController@showPeminjaman')->name('petugas.peminjaman');
 });
- 
+
+// Route untuk melihat detail buku berdasarkan judul
+Route::get('/viewbook/{judul}', [App\Http\Controllers\HomeController::class, 'viewbook'])->name('viewbook');
