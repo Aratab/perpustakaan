@@ -309,4 +309,8 @@ class PetugasController extends Controller
  
         return redirect()->back()->with('info', 'Berhasil menambahkan data peminjaman');
     }
+
+    public function pengembalian() {
+        
+    }
 }

@@ -20,6 +20,7 @@
           <th scope="col">NIM</th> 
           <th scope="col">ISBN Buku</th>
           <th scope="col">Status</th>
+          <th scope="col">Aksi</th>
         </tr>
       </thead>
       <tbody>
@@ -34,6 +35,9 @@
               @else 
                 <td style="color: green">Sudah Dikembalikan</td>
               @endif 
+              <td>
+                <button type="button" class="btn btn-secondary" onclick="location.href='{{ route('petugas.pengembalian') }}'">Proses</button>
+              </td>
             </tr>
           @endforeach 
       </tbody>
