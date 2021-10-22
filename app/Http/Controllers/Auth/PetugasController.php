@@ -246,9 +246,9 @@ class PetugasController extends Controller
             return redirect()->back()->with('error', 'Tidak ada buku yang dipilih!');
         }
 
-        $Peminjaman = Peminjaman::where('nim',$request->nim);
-        foreach($Peminjaman as $item) {
-            if(DetailTransaksi::firstWhere('idtransaksi',$Peminjaman->idtransaksi)->tgl_kembali == null) {
+        $peminjaman = Peminjaman::where('nim',$request->nim)->get();
+        foreach($peminjaman as $item) {
+            if(DetailTransaksi::firstWhere('idtransaksi',$item->idtransaksi)->tgl_kembali == null) {
                 return redirect()->back()->with('error', 'Anggota belum mengembalikan buku dari peminjaman sebelumnya!');
             }
         } 
