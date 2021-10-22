@@ -22,7 +22,7 @@ class AnggotaController extends Controller
     public function index(Request $request)
     {
         // return view('beranda');
-        return view('anggota.dashboard', [
+        return view('anggota.dashboard', [ 
             "title" => "Dashboard",
             "nama" => Auth::user()->nama,
             "nim" => Auth::user()->nim,
@@ -35,7 +35,7 @@ class AnggotaController extends Controller
 
     public function showBuku()
     {
-        return view('anggota.buku', [
+        return view('anggota.buku', [ 
             "title" => "Buku",
             "allBuku" => Buku::all(),
         ]);
@@ -43,7 +43,7 @@ class AnggotaController extends Controller
 
     public function showPeminjaman()
     {
-        return view('anggota.peminjaman', [
+        return view('anggota.peminjaman', [ 
             "title" => "Peminjaman",
             "allPeminjaman" => Peminjaman::where('nim', Auth::user()->nim)->get(),
             "allDetail" => DetailTransaksi::all(),

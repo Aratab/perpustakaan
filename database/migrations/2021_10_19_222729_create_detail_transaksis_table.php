@@ -16,7 +16,7 @@ class CreateDetailTransaksisTable extends Migration
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->unsignedBigInteger('idtransaksi');
             $table->unsignedBigInteger('idbuku');
-            $table->date('tgl_kembali');
+            $table->date('tgl_kembali')->nullable();
             $table->integer('denda')->default(0);
             $table->foreign('idtransaksi')->references('idtransaksi')->on('Peminjaman');
             $table->foreign('idbuku')->references('idbuku')->on('Buku');

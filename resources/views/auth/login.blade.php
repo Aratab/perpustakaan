@@ -1,6 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
+<script>document.title = "Login - Perpustakaan"</script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
