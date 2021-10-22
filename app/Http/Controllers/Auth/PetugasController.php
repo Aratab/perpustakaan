@@ -12,9 +12,7 @@ use App\Models\Kategori;
 use App\Models\Anggota;
 use App\Models\DetailTransaksi;
 use App\Models\Peminjaman;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon; 
 
 class PetugasController extends Controller
 {   
