@@ -154,7 +154,20 @@ class PetugasController extends Controller
         ]);
     }
     public function updateCust(Request $request)
-    {
+    {   
+        $ok = $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'kota' => 'required',
+            'email' => 'required',
+            'no_telp' => 'required',
+            'password' => 'required'
+        ]);
+
+        if(!$ok) {
+            return redirect()->back()->with('error', 'Gagal mengupdate data');
+        }
+ 
         // update data Anggota
         Anggota::where('nim', $request->id)->update([
             'nama' => $request->nama,
