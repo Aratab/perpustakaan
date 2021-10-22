@@ -29,9 +29,10 @@
         </tr>
       </thead>
       <tbody>
+        <?php $no = 0; ?>
         @foreach ($allBuku as $buku)
         <tr>
-          <td>{{ $buku->idbuku}}</td>
+          <td>{{ ++$no; }}</td>
           <td>{{ $buku->isbn }}</td>
           <td>{{ $buku->judul }}</td>
           <td>{{ $buku->stok }}</td>
