@@ -23,12 +23,13 @@ class PetugasController extends Controller
         $this->middleware('auth:petugas');
     } 
     
+    // Menampilkan Dashboard Petugas
     public function index()
     {
         // return view('beranda');
-        return view('petugas.dashboard',[
-            'title' => 'Dashboard',
-            'allBuku' => Buku::all()
+        return view('petugas.dashboard', [
+            "title" => "Dasboard",
+            "nama" => Auth::user()->nama,
         ]);
     }
     
