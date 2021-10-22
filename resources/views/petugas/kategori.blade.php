@@ -6,11 +6,32 @@
     <h1 class="h2">Kategori</h1> 
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
-        <button type="button" class="btn btn-sm btn-outline-secondary">Tambah Kategori</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='/petugas/kategori/addKategori'">Tambah Kategori</button>
         <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
       </div>
     </div>
   </div>
+
+  @if (session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ session('success') }}
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    </div>
+    @endif
+
+  @if (session()->has('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ session('error') }}
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  </div>
+  @endif
+
+  @if (session()->has('info'))
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ session('info') }}
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  </div>
+  @endif
 
   <div class="table-responsive">
     <table class="table table-striped table-sm">
@@ -27,8 +48,8 @@
           <td>{{ $kategori->idkategori}}</td>
           <td>{{ $kategori->nama }}</td>
           <td>
-            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='{{ url('buku/editbuku') }}'">Edit</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+          <a href="kategori/editKategori/{{ $kategori->idkategori }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+            <a href="kategori/hapus/{{ $kategori->idkategori }}" class="btn btn-sm btn-outline-secondary">Delete</button>
           </td>
         </tr>
         @endforeach
