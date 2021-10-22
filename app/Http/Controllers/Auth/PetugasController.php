@@ -245,10 +245,12 @@ class PetugasController extends Controller
             return redirect()->back()->with('error', 'Tidak ada buku yang dipilih!');
         }
 
-        $jumlahPeminjaman = Peminjaman::where('nim',$request->nim)->count();
-        if($jumlahPeminjaman > 0) {
-            return redirect()->back()->with('error', 'Anggota belum mengembalikan buku dari peminjaman sebelumnya!');
-        }
+        $Peminjaman = Peminjaman::where('nim',$request->nim);
+        foreach($Peminjaman as $item) {
+            if(DetailTransaksi::firstWhere('idtransaksi',$Peminjaman->idtransaksi)->tgl_kembali == null) {
+                return redirect()->back()->with('error', 'Anggota belum mengembalikan buku dari peminjaman sebelumnya!');
+            }
+        } 
 
         // Memasukkan data ke tabel Peminjaman
         $tanggal = Carbon::parse($request->tgl_pinjam)->format('Y-m-d');
@@ -310,7 +312,66 @@ class PetugasController extends Controller
         return redirect()->back()->with('info', 'Berhasil menambahkan data peminjaman');
     }
 
-    public function pengembalian() {
+    public function showFormPengembalian($idtransaksi, $idbuku) {
+        $tgl_sekarang = Carbon::now();
+        $tgl_pinjam = Carbon::parse(Peminjaman::firstWhere('idtransaksi', $idtransaksi)->tgl_pinjam);
+        $diff = $tgl_pinjam->diffInDays($tgl_sekarang,false);
+
+        if($diff > 14) {
+            $diff -= 14;
+        } 
+        return view('petugas.pengembalian', [
+            'title'=>"Peminjaman",
+            'peminjaman' => Peminjaman::firstWhere('idtransaksi', $idtransaksi),
+            'idbuku' => $idbuku,
+            'isbn' => Buku::firstWhere('idbuku', $idbuku)->isbn,
+            'diff' => $diff
+        ]);
+    }
+
+    public function kirimDenda($idtransaksi, $idbuku) {
+        $tgl_sekarang = Carbon::now();
+        $tgl_pinjam = Carbon::parse(Peminjaman::firstWhere('idtransaksi', $idtransaksi)->tgl_pinjam);
+        $diff = $tgl_pinjam->diffInDays($tgl_sekarang,false);
+
+        if($diff > 14) {
+            $diff -= 14;
+        }
+ 
+        // Update detail transksi untuk kolom denda
+        DetailTransaksi::where('idtransaksi',$idtransaksi)->where('idbuku',$idbuku)->update([
+            'denda' => $diff * 1000,
+            'tgl_kembali' => date('Y-m-d')
+        ]);
+
+        // Update peminjaman untuk kolom total denda
+        Peminjaman::where('idtransaksi', $idtransaksi)->update([
+            'total_denda' => Peminjaman::firstWhere('idtransaksi',$idtransaksi)->total_denda + $diff * 1000
+        ]);
         
+        // Update buku untuk kolom stok tersedia
+        Buku::where('idbuku', $idbuku)->update([
+            'stok_tersedia' => Buku::firstWhere('idbuku', $idbuku)->stok_tersedia + 1
+        ]);
+
+        return redirect(route('petugas.peminjaman'));
+    }
+
+    public function detail($idtransaksi, $idbuku) {
+        $tgl_sekarang = Carbon::parse(DetailTransaksi::firstWhere(['idtransaksi'=>$idtransaksi, 'idbuku'=>$idbuku])->tgl_kembali);
+        $tgl_pinjam = Carbon::parse(Peminjaman::firstWhere('idtransaksi', $idtransaksi)->tgl_pinjam);
+        $diff = $tgl_pinjam->diffInDays($tgl_sekarang,false);
+        
+        if($diff > 14) {
+            $diff -= 14;
+        }
+
+        return view('petugas.detail', [
+            'title'=>"Peminjaman",
+            'peminjaman' => Peminjaman::firstWhere('idtransaksi', $idtransaksi),
+            'idbuku' => $idbuku,
+            'isbn' => Buku::firstWhere('idbuku', $idbuku)->isbn,
+            'diff' => $diff
+        ]);
     }
 }

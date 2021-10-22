@@ -72,8 +72,9 @@ Route::prefix('petugas')->group(function () {
     Route::get('/tambahdatapinjam', 'Auth\PetugasController@showFormTambahDataPinjam')->name('petugas.tambahdatapinjam');
     Route::post('/addpeminjaman', 'Auth\PetugasController@addPeminjaman')->name('petugas.addpeminjaman');
 
-    Route::get('/pengembalian', 'Auth\PetugasController@pengembalian')->name('petugas.pengembalian');
-  
+    Route::get('/pengembalian/{idtransaksi}/{idbuku}', 'Auth\PetugasController@showFormPengembalian');
+    Route::get('/kirimdenda/{idtransaksi}/{idbuku}', 'Auth\PetugasController@kirimDenda');
+    Route::get('/detail/{idkategori}/{idbuku}', 'Auth\PetugasController@detail');
 });
 
 // Route untuk melihat detail buku berdasarkan judul

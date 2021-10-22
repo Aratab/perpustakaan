@@ -11,8 +11,9 @@ class Peminjaman extends Model
 
     protected $table = "peminjaman";
     public $timestamps = false;
+    protected $primaryKey = "idtransaksi";
     protected $fillable = [
-        'nim', 'tgl_pinjam', 'idpetugas'
+        'nim', 'tgl_pinjam', 'idpetugas', 'total_denda'
     ];
 
 }

@@ -32,12 +32,15 @@
               <td>{{ $allBuku->firstWhere('idbuku', $detail->idbuku)->isbn }}</td>
               @if ($detail->tgl_kembali == null)
                 <td style="color: red"><b>Belum Dikembalikan</b></td> 
+                <td>
+                  <button type="button" class="btn btn-secondary" onclick="location.href='/petugas/pengembalian/{{ $detail->idtransaksi }}/{{ $detail->idbuku }}'">Proses</button>
+                </td>
               @else 
                 <td style="color: green">Sudah Dikembalikan</td>
+                <td>
+                  <button type="button" class="btn btn-secondary" onclick="location.href='/petugas/detail/{{ $detail->idtransaksi }}/{{ $detail->idbuku }}'">Detail</button>
+                </td>
               @endif 
-              <td>
-                <button type="button" class="btn btn-secondary" onclick="location.href='{{ route('petugas.pengembalian') }}'">Proses</button>
-              </td>
             </tr>
           @endforeach 
       </tbody>

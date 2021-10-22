@@ -17,7 +17,7 @@ class CreatePeminjamenTable extends Migration
             $table->id('idtransaksi');
             $table->string('nim',20);
             $table->date('tgl_pinjam');
-            $table->integer('total_denda');
+            $table->integer('total_denda')->default(0);
             $table->string("idpetugas",20);
             $table->foreign('nim')->references('nim')->on('Anggota');
             $table->foreign('idpetugas')->references('idpetugas')->on('Petugas');
