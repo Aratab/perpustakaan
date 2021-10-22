@@ -25,6 +25,7 @@ Route::prefix('anggota')->group(function() {
     Route::get('/', 'Auth\AnggotaController@index')->name('anggota.dashboard');
 
     Route::get('/buku', 'Auth\AnggotaController@showBuku')->name('anggota.buku');
+    Route::get('/peminjaman', 'Auth\AnggotaController@showPeminjaman')->name('anggota.peminjaman');
 });
 
 Route::prefix('petugas')->group(function() {

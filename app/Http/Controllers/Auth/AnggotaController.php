@@ -24,16 +24,22 @@ class AnggotaController extends Controller
     {
         // return view('beranda');
         return view('anggota.dashboard',[
-            "title" => "Dashboard",
-            "allPeminjaman" => Peminjaman::where('nim',Auth::user()->nim)->get(),
-            "allDetail" => DetailTransaksi::all(),
-            "allBuku" => Buku::all()
+            "title" => "Dashboard"
         ]);
     }
 
     public function showBuku() {
         return view('anggota.buku', [
             "title" => "Buku",
+            "allBuku" => Buku::all()
+        ]);
+    }
+
+    public function showPeminjaman() {
+        return view('anggota.peminjaman',[
+            "title" => "Peminjaman",
+            "allPeminjaman" => Peminjaman::where('nim',Auth::user()->nim)->get(),
+            "allDetail" => DetailTransaksi::all(),
             "allBuku" => Buku::all()
         ]);
     }
