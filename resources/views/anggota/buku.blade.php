@@ -3,14 +3,18 @@
 @section('content')
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Buku</h1> 
-    <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group me-2">
-        <button type="button" class="btn btn-sm btn-outline-secondary">Tambah Buku</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-      </div>
-    </div>
+    <h1 class="h2">Buku</h1>
   </div>
+
+  @if ($message = Session::get('gagal'))  
+    <div class="alert alert-danger" role="alert">
+      {{ $message }}
+    </div>
+  @elseif ($message = Session::get('info')) 
+    <div class="alert alert-info" role="alert">
+      {{ $message }}
+    </div>
+  @endif
 
   <div class="table-responsive">
     <table class="table table-striped table-sm">
@@ -20,8 +24,7 @@
           <th scope="col">ISBN</th>
           <th scope="col">Judul</th>
           <th scope="col">Stok</th>
-          <th scope="col">Tersedia</th>
-          <th scope="col">Action</th>
+          <th scope="col">Tersedia</th> 
         </tr>
       </thead>
       <tbody>
@@ -31,10 +34,7 @@
           <td>{{ $buku->isbn }}</td>
           <td>{{ $buku->judul }}</td>
           <td>{{ $buku->stok }}</td>
-          <td>{{ $buku->stok_tersedia }}</td>
-          <td>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Pinjam</button> 
-          </td>
+          <td>{{ $buku->stok_tersedia }}</td> 
         </tr>
         @endforeach
       </tbody>

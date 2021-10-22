@@ -16,7 +16,7 @@ class CreatePeminjamenTable extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id('idtransaksi');
             $table->string('nim',20);
-            $table->timestamp('tgl_pinjam');
+            $table->date('tgl_pinjam');
             $table->integer('total_denda');
             $table->string("idpetugas",20);
             $table->foreign('nim')->references('nim')->on('Anggota');

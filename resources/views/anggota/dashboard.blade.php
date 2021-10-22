@@ -8,7 +8,29 @@
 
   <div class="table-responsive">
     <table class="table table-striped table-sm">
-      Kosong
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">ISBN</th>
+          <th scope="col">Judul</th>
+          <th scope="col">Tanggal Pinjam</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <?php $no = 0; ?>
+        @foreach ($allPeminjaman as $p)
+          @foreach ($allDetail as $d) 
+            @if ($d->idtransaksi == $p->idtransaksi && $d->tgl_kembali == null)
+              <tr>
+                <td> {{ ++$no; }}</td>
+                <td>{{ $allBuku->firstWhere('idbuku', $d->idbuku)->isbn }}</td>
+                <td>{{ $allBuku->firstWhere('idbuku', $d->idbuku)->judul }}</td>
+                <td>{{ $p->tgl_pinjam }}</td>
+              </tr>
+            @endif              
+          @endforeach
+        @endforeach
+      </tbody>
   </div>
 </main>
 @endsection
