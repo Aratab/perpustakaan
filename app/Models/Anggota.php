@@ -11,7 +11,7 @@ class Anggota extends Authenticatable
     use Notifiable;
     protected $guard = 'anggota';
     protected $table ="anggota";
-    protected $primaryKey = "nim";
+    //protected $primaryKey = "nim";
     protected $fillable = [
         'nama', 
         'email',
