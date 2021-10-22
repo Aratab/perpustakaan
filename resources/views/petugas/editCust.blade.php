@@ -26,7 +26,7 @@
               <input type="hidden" name="id"  value="{{ $p->nim }}">
                 <div class="form-group">
                   <label for="nim">NIM:</label>
-                  <input type="number" class="form-control" id="nim" name="nim" value="{{ $p->nim }}">
+                  <input type="number" class="form-control" id="nim" name="nim" value="{{ $p->nim }}" disabled>
                 </div>
                 <br>
                 <div class="form-group">
