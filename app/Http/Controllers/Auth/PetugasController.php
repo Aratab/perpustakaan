@@ -70,7 +70,7 @@ class PetugasController extends Controller
         $tujuan_upload = 'img';
         $file_gambar->move($tujuan_upload, $nama_file);
 
-        Buku::insert([
+        Buku::create([
             'isbn' => $request->isbn,
             'judul' => $request->judul,
             'pengarang' => $request->pengarang,
@@ -81,8 +81,6 @@ class PetugasController extends Controller
             'stok' => $request->stok,
             'stok_tersedia' => $request->stok_tersedia,
             'file_gambar' => $nama_file,
-
-
         ]);
 
         return redirect('petugas/buku')->with('success', 'New book has been added');

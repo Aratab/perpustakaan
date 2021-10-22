@@ -19,6 +19,7 @@ class Buku extends Model
         'editor',
         'stok',
         'stok_tersedia',
+        'file_gambar',
     ];
 }
 
