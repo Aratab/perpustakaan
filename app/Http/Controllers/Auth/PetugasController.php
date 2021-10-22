@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\Anggota;
+use App\Models\DetailTransaksi;
 
 class PetugasController extends Controller
 {   
@@ -218,4 +219,11 @@ class PetugasController extends Controller
         return redirect('/petugas/kategori')->with('error', 'Kategori has been removed');
     }
 
+
+    public function showPeminjaman() {
+        return view('petugas.peminjaman', [
+            "title" => "Peminjaman",
+            "allDetailTransaksi" => DetailTransaksi::all()
+        ]);
+    }
 }

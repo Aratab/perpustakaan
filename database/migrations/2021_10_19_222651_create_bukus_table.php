@@ -23,8 +23,7 @@ class CreateBukusTable extends Migration
             $table->string('kota_terbit');
             $table->string('editor',50);
             $table->string('file_gambar')->nullable();
-            $table->timestamp('tgl_insert')->useCurrent();
-            $table->timestamp('tgl_update')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamps();
             $table->integer('stok');
             $table->integer('stok_tersedia');
             $table->foreign('idkategori')->references('idkategori')->on('Kategori');

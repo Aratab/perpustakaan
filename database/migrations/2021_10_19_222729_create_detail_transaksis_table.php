@@ -17,7 +17,7 @@ class CreateDetailTransaksisTable extends Migration
             $table->unsignedBigInteger('idtransaksi');
             $table->unsignedBigInteger('idbuku');
             $table->timestamp('tgl_kembali');
-            $table->integer('denda');
+            $table->integer('denda')->default(0);
             $table->foreign('idtransaksi')->references('idtransaksi')->on('Peminjaman');
             $table->foreign('idbuku')->references('idbuku')->on('Buku');
         });

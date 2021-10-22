@@ -67,7 +67,11 @@ Route::prefix('petugas')->group(function() {
     //Halaman Kategori. Anggota, Buku dari Petugas
     Route::get('/kategori','Auth\PetugasController@showKategori')->name('petugas.kategori');
     Route::get('/data_anggota','Auth\PetugasController@showDataAnggota')->name('petugas.dataanggota');
+
     Route::get('/buku','Auth\PetugasController@showBuku')->name('petugas.buku');
+
+    Route::get('/peminjaman', 'Auth\PetugasController@showPeminjaman')->name('petugas.peminjaman');
+
 });
 
 // Route untuk melihat detail buku berdasarkan judul
