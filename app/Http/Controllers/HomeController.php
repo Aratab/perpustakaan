@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Buku;
-use App\Models\Kategori;
-use App\Models\Anggota;
-use Auth;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -27,12 +24,27 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $allBuku = Buku::all();
+
         return view("home", [
-            "allBuku" => Buku::all()
+            "allBuku" => $allBuku,
         ]);
     }
 
-    public function viewbook($judul){
+    public function search(Request $request)
+    {
+        // dd($request->all());
+        $search = $request->search;
+
+        $allBuku = Buku::where('judul', 'like', "%" . $search . "%")->paginate();
+
+        return view("home", [
+            "allBuku" => $allBuku,
+        ]);
+    }
+
+    public function viewbook($judul)
+    {
         return view("viewbook", [
             "isbn" => Buku::where('judul', $judul)->pluck('isbn'),
             "judul" => Buku::where('judul', $judul)->pluck('judul'),
@@ -47,6 +59,6 @@ class HomeController extends Controller
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto rem vitae eligendi incidunt excepturi earum quis adipisci omnis voluptatum aut aliquam repudiandae minima in, eaque velit maiores similique minus et.",
             "allbuku" => Buku::all(),
         ]);
-      
+
     }
 }

@@ -20,35 +20,38 @@
 <div class="card m-5" id="daftar_buku" style="padding: 2%; border-radius: 30px; background: white">
   <h1 class="text-center">Temukan buku yang Anda cari.</h1>
   <p class="text-center">Cari judul buku yang ingin Anda baca. Anda dapat membacanya saat ini atau meminjamnya untuk dibaca nanti.</p>
+<form action="/search" method="GET">
   <div class="input-group" >
-    <input type="text" class="form-control" placeholder="Cari judul buku">
+    <input type="text" name="search" class="form-control" placeholder="Cari judul buku">
     <div class="input-group-append">
-      <button class="btn btn-primary" type="button" style="width:72px">
+      <button class="btn btn-primary" type="submit" style="width:72px">
         <img class="feather feather-search" src="/feather/search.svg" style="filter: invert(50); height: 20px">
       </button>
     </div>
   </div>
+</form>
+
 
   <!-- List Buku -->
   <table>
     <div class="row mt-3" style="margin: 2%;">
-      @foreach ($allBuku as $buku) 
+      @foreach ($allBuku as $buku)
       <div class="col-md-2">
         <div class="card mb-2 shadow-sm">
           <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 100%; width: 100%; display: block;" src="/img/{{ $buku->file_gambar }}" data-holder-rendered="true">
           <div class="card-body">
             <p class="card-text"><b>Tersedia: {{ $buku->stok_tersedia }}</b></p>
             <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group"> 
+              <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href=' /viewbook/{{ $buku->judul}} '">Lihat</button>
                 <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href=' /anggota/login '">Pinjam</button>
-              </div> 
+              </div>
             </div>
           </div>
         </div>
       </div>
       @endforeach
-    </div> 
+    </div>
   </table>
 </div>
 
@@ -70,5 +73,5 @@
   </div>
 </div>
 
-    
+
 @endsection
